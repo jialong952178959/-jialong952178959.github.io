@@ -1,0 +1,865 @@
+
+
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.42.1 with theme Tranquilpeak 0.4.3-BETA">
+    <title>获取微信公众号文章踩坑记录（2）.md</title>
+    <meta name="author" content="Firstname Lastname">
+    <meta name="keywords" content="hugo">
+
+    <link rel="icon" href="https://jialong952178959.github.io/favicon.png">
+    
+
+    
+    <meta name="description" content="第一篇文章">
+    <meta property="og:description" content="第一篇文章">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="获取微信公众号文章踩坑记录（2）.md">
+    <meta property="og:url" content="/python%E7%88%AC%E8%99%AB/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952/">
+    <meta property="og:site_name" content="Hugo tranquilpeak theme">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Hugo tranquilpeak theme">
+    <meta name="twitter:description" content="第一篇文章">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://jialong952178959.github.io/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="1">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://jialong952178959.github.io/">Hugo tranquilpeak theme</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://jialong952178959.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="1">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://jialong952178959.github.io/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Firstname Lastname</h4>
+        
+          <h5 class="sidebar-profile-bio">Super bio with markdown support <strong>COOL</strong></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialong952178959.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialong952178959.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialong952178959.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialong952178959.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialong952178959.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kakawait" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/636472/kakawait" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://jialong952178959.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="1"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      获取微信公众号文章踩坑记录（2）.md
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-05-22T22:04:26&#43;08:00">
+        
+  May 22, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://jialong952178959.github.io/categories/pages">pages</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<ul>
+<li>在文章的开头贴上搜到的一个视频资源，关于爬取微信公众号文章。讲得比较细，用requests这个库。借鉴了里面的关于查看100条信息以后的登录的方法。虽然没搞懂为什么。<br />
+<a href="https://www.bilibili.com/video/av22267490/">https://www.bilibili.com/video/av22267490/</a><br />
+<br /></li>
+</ul>
+
+<p>## 分析文章列表<br />
+   在文章列表中，每一篇文章都放在一个“&lt;li&gt;”标签下。
+   1. “文章时间”元素的id为“sogou_vr_11002601_box_0”到“sogou_vr_11002601_box_n”；
+   2. “文章链接”的id为“sogou_vr_11002601_title_x”，保存在href属性中；
+   3. “文章标题”也包含在“sogou_vr_11002601_title_x中”，因为含有搜索的关键字，整个标题被拆分成几大块放在不同位置；</p>
+
+<p>因此先通过id找到标签元素，然后通过获取属性或者html代码的方式，获得三种要爬取的信息。循环执行，直到把当前页的信息全部获取。<br />
+  ## 循环次数的确定<br />
+  循环的次数就是“&lt;li&gt;”标签的数量。使用find_elements_by_xpath()函数可返回文章列表的所有element得到一个List。元组的长度就是标签的数量。
+  ## 查看某个元素的xpath
+  在浏览器中右键&ndash;》审查元素&ndash;》在控制台中右键元素对应的标签代码&ndash;》copy&ndash;》copy xpath
+  ## 注意时间标签的xpath路径
+  一般路径为&rdquo;//*[@id=\&ldquo;sogou_vr_11002601_box_0\&ldquo;]/div[2]/div/span&rdquo;，有的时候这个路径会搜不到，使用try except（异常捕捉），在搜不到的时候使用路径&rdquo;//*[@id=\&ldquo;sogou_vr_11002601_box_0\&ldquo;]/div/div[2]/span&rdquo;从新搜索。
+  ## 标题的拼接
+  获取html源码后删除里面的非标签内容。<br />
+  标签的html代码： 删除里面的括号和括号里的内容即可</p>
+
+<pre><code>&lt;em&gt;&lt;!--red_beg--&gt;DataCastle&lt;!--red_end--&gt;&lt;/em&gt;应邀参加&lt;em&gt;&lt;!--red_beg--&gt;2016&lt;!--red_end--&gt;&lt;/em&gt;贵阳数博会,&lt;em&gt;&lt;!--red_beg--&gt;数据&lt;!--red_end--&gt;&lt;/em&gt;&lt;em&gt;&lt;!--red_beg--&gt;城堡&lt;!--red_end--&gt;&lt;/em&gt;堡主周涛现场展示大&lt;em&gt;&lt;!--red_beg--&gt;数据&lt;!--red_end--&gt;&lt;/em&gt;风采
+</code></pre>
+
+<p>replace（） 函数可以用空的字符串替代要删除的内容，达到删除的效果。</p>
+
+<pre><code>linkID=str('sogou_vr_11002601_title_'+str(i))
+link0=brower.find_element_by_id(linkID)
+#获取时间
+strlink=link0.get_attribute('href')
+#获取标题的html代码
+link0Html=str(link0.get_attribute('innerHTML'))
+replaceText=[&quot;em&quot;,&quot;!--red_beg--&quot;,&quot;!--red_end--&quot;,&quot;&lt;/&gt;&quot;,&quot;&lt;&gt;&quot;]
+#删除不需要的字符
+for replaceTextEach in replaceText:
+    link0Html=link0Html.replace(replaceTextEach,&quot;&quot;)
+</code></pre>
+
+<h2 id="爬取的内容按时间排序">爬取的内容按时间排序</h2>
+
+<blockquote>
+<ul>
+<li>参考 <a href="https://www.cnblogs.com/whaben/p/6495702.html">https://www.cnblogs.com/whaben/p/6495702.html</a><br /></li>
+</ul>
+</blockquote>
+
+<p>抓取的内容保存到List对象中，然后对List排序。sorted()函数可以根据字符排序，但是获得时间信息的格式如：“2018-6-10”在排序过程中与“2018-10-10”，会因为6&gt;1，出现错误，因此把时间标准化为“20180610”。代码入下：</p>
+
+<pre><code>time0=brower.find_element_by_xpath(timeXpath)
+strTime0=str(time0.text)
+strTime0List=strTime0.split('-')
+#小于10在前面加0
+if(int(strTime0List[1])&lt;10):
+    strTime0List[1]=&quot;0&quot;+strTime0List[1]
+if(int(strTime0List[2])&lt;10):
+    strTime0List[2]=&quot;0&quot;+strTime0List[2]
+strTime0=strTime0List[0]+strTime0List[1]+strTime0List[2]
+</code></pre>
+
+<h2 id="关于find-element有时候selenium会报错-element-is-not-attached-to-the-page-document">关于find_element有时候selenium会报错“element is not attached to the page document”</h2>
+
+<p>网上的解释为，因为刷新或者网络延迟未加载出来，使得标签丢失。解决方法是在加载新页面或者刷新后让线程休息几秒。或者循环执行代码，直到找到找到标签。</p>
+
+<pre><code> 1.   time.sleep(5)
+
+ 2.    #最多循环5次就跳出   
+        for j in range(5):                    
+            try:
+                find_element()
+                break
+            except:
+                #print(&quot;*****未找到元素*****&quot;)
+</code></pre>
+
+<h2 id="写入csv文件时出现空行">写入csv文件时出现空行</h2>
+
+<blockquote>
+<ul>
+<li>参考 <a href="https://blog.csdn.net/huitailang1991/article/details/54946528">https://blog.csdn.net/huitailang1991/article/details/54946528</a><br />
+空行的出现时因为编码的原因</li>
+</ul>
+</blockquote>
+
+<h2 id="关于登录的问题">关于登录的问题</h2>
+
+<p>之前在点击登录没有任何响应，正在准备放弃的时候，看到开头说的那个视频，通过cookies实现登录。不是很懂，但照着做确实有效果了。<br />
+* <strong>selenium直接在get请求中加入参数的方法</strong>
+&gt; 参考 <a href="https://www.zhihu.com/question/35547395">https://www.zhihu.com/question/35547395</a>
+* <strong>使用requests包设置get请求参数</strong>
+&gt; 参考 <a href="https://www.cnblogs.com/weke/articles/6309044.html">https://www.cnblogs.com/weke/articles/6309044.html</a></p>
+
+<p>首先自己扫码登录，在f12的network选项卡中查看状态码为200的请求，复制其中的cookies值。</p>
+
+<h1 id="源码完整版">源码完整版</h1>
+
+<pre><code>#coding=utf-8
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+from operator import itemgetter, attrgetter
+import csv
+import os
+import sys
+import io
+import requests
+
+#sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='gb18030') #改变标准输出的默认编码
+
+def getInfoFromWeixin(weixinID):
+    
+    ChromePath=&quot;C:/Users/ZJL/Desktop/python/chromedriver.exe&quot;
+    brower=webdriver.Chrome(ChromePath)
+    #先登录
+    r=requests.get(
+    url='http://weixin.sogou.com',
+    params={'Cookie':'SUID=8E0C80DF5EC90D0A00000000576F9CD5; SUV=00C77C06DF800C8E577D08AEAB055866; ssuid=5370652624; SMYUV=1489388482075944; dt_ssuid=5216821605; pex=C864C03270DED3DD8A06887A372DA219231FFAC25A9D64AE09E82AED12E416AC; IPLOC=CN5101; pgv_pvi=3011424256; UM_distinctid=162a30d592d3-044c2001b0a4b-5d4e211f-100200-162a30d592f151; GOTO=; toutiao_city_news=%E5%8C%97%E4%BA%AC; _ga=GA1.2.1916195936.1523153991; ld=Nyllllllll2z83CBlllllVrGrq6lllllTcla1kllll9llllljklll5@@@@@@@@@@; LSTMV=250%2C200; LCLKINT=11916; ABTEST=0|1524710372|v1; weixinIndexVisited=1; SNUID=45EA6D32ECE98671D961C2E8ED6DF37C; JSESSIONID=aaam4cMUTJ4k89_De6Kmw; sct=12; ppinf=5|1525699622|1526909222|dHJ1c3Q6MToxfGNsaWVudGlkOjQ6MjAxN3x1bmlxbmFtZToxODolRTQlQkQlQjMlRTklQkUlOTl8Y3J0OjEwOjE1MjU2OTk2MjJ8cmVmbmljazoxODolRTQlQkQlQjMlRTklQkUlOTl8dXNlcmlkOjQ0Om85dDJsdUJUNDhfQVBiWHp2VlZZVmlFcjdUakVAd2VpeGluLnNvaHUuY29tfA; pprdig=KDD-eUkj0n0PW8Ph0VJljopJp0U4HDTBD-piMCA-PtcMbZywAf0bw3D3wZLDx1rGK3JeMncJyqUXz3o1Khc8cGpEGq_wli2HLZuRBWGsjm4tb65q35E3iRHiZJBZSYMO2ZDA63sUODclHEgjzF60iVgDJiQMtyZ6AX-f0uGJsQk; sgid=01-32626259-AVrwVCanK6ick5pOdIKW8JpQ'})
+    newUrl=str(r.url)
+    brower.get(newUrl)
+    quitBtn=brower.find_element_by_id('loginBtn')
+    quitBtn.click()
+    time.sleep(15)
+    #通过搜狗.微信搜索DataCastle2016
+    brower.get(&quot;http://weixin.sogou.com/weixin?type=2&amp;query=&quot;+weixinID+&quot;&amp;ie=utf8&amp;s_from=input&amp;_sug_=y&amp;_sug_type_=&quot;)
+    # #查找登录按钮并点击
+    # brower.find_element_by_id('top_login').click()
+    # #等到微信扫码
+    # time.sleep(15)
+    
+    #找到筛选的按钮“搜索工具”，id为“tool_show”，自己打开上面的页面，然后F12，在Elements找到对应的UI。
+    getSearchBtn=brower.find_element_by_id('tool_show')
+    #获取到按钮后，执行点击
+    getSearchBtn.click()
+    #再找到&quot;账号内搜索“按钮，并点击
+    getIDSearchBtn=brower.find_element_by_id('search')
+    getIDSearchBtn.click()
+
+    #可能上面两步都不用也能直接获取input输入框
+    #获取到输入框input，清空，给输入框赋值”DataCastle2016“
+    getInput = brower.find_element_by_class_name('s-sea')
+    getInput.clear()
+    getInput.send_keys(weixinID)
+    #下面这步相当于回车
+    getInput.send_keys(Keys.RETURN)
+
+    
+    #  获取当前页面的信息数量
+    pageInfosList=[]
+
+    pageIndex=1
+    while pageIndex&gt;0:
+        time.sleep(5)
+        numInPage=len(brower.find_elements_by_xpath(&quot;//*[@id=\&quot;main\&quot;]/div[4]/ul/li&quot;))
+
+        for i in range(numInPage):
+            strlink=&quot;&quot;
+            link0Html=&quot;&quot;
+            strTime0=&quot;&quot;
+            timeXpath=&quot;//*[@id=\&quot;sogou_vr_11002601_box_&quot;+str(i)+&quot;\&quot;]/div[2]/div/span&quot;
+            for j in range(5):#线程休息2秒后最多循环5次就跳出                    
+                try:
+                    linkID=str('sogou_vr_11002601_title_'+str(i))
+                    link0=brower.find_element_by_id(linkID)
+                    strlink=link0.get_attribute('href')
+                    
+                    
+                    link0Html=str(link0.get_attribute('innerHTML'))
+                    replaceText=[&quot;em&quot;,&quot;!--red_beg--&quot;,&quot;!--red_end--&quot;,&quot;&lt;/&gt;&quot;,&quot;&lt;&gt;&quot;]
+                    for replaceTextEach in replaceText:
+                        link0Html=link0Html.replace(replaceTextEach,&quot;&quot;)
+                    
+                    time0=brower.find_element_by_xpath(timeXpath)
+                    strTime0=str(time0.text)
+                    strTime0List=strTime0.split('-')
+                    #小于10在前面加0
+                    if(int(strTime0List[1])&lt;10):
+                        strTime0List[1]=&quot;0&quot;+strTime0List[1]
+                    if(int(strTime0List[2])&lt;10):
+                        strTime0List[2]=&quot;0&quot;+strTime0List[2]
+                    strTime0=strTime0List[0]+strTime0List[1]+strTime0List[2]
+                    break
+
+                except:
+                    #print(&quot;*****未找到元素*****&quot;)
+                    timeXpath=&quot;//*[@id=\&quot;sogou_vr_11002601_box_&quot;+str(i)+&quot;\&quot;]/div/div[2]/span&quot;
+
+            # print(&quot;链接：&quot;+strlink)
+            # print(&quot;标题：&quot;+link0Html)
+            # print(&quot;时间:&quot;+strTime0)
+            pageInfosList.append([link0Html,strTime0,strlink])
+        #点击“下一页”
+        try:
+            brower.find_element_by_id('sogou_next').click()
+            print(pageIndex)
+            pageIndex+=1
+        except :
+            print(&quot;没有下一页！&quot;)
+            break
+    
+    pageInfosListNew=sorted(pageInfosList, key=itemgetter(1), reverse=True)
+    
+    return pageInfosListNew
+
+def writeInCSV(pageInfosList):
+    # csvfile=open(&quot;F:/WeiXin.csv&quot;,'wb')
+    # writer=csv.writer(csvfile)
+    # writer.writerow([&quot;链接&quot;,&quot;标题&quot;,&quot;日期&quot;])
+    # writer.writerows(pageInfosList)
+    # csvfile.close()
+    with open(&quot;F:/WeiXin.csv&quot;,'w',newline='') as csvout:
+        writer = csv.writer(csvout)
+        titleList=[&quot;标题&quot;,&quot;日期&quot;,&quot;链接&quot;]
+        writer.writerow(titleList)
+        for pageInfosLists in pageInfosList:
+            try:
+                writer.writerow(pageInfosLists)
+            except:
+                print(&quot;输出错误：&quot;+pageInfosLists[0]+&quot; || &quot;+pageInfosLists[1]+&quot; || &quot;+pageInfosLists[2])
+        
+    os.startfile(&quot;F:/WeiXin.csv&quot;)
+        
+pageInfosList=getInfoFromWeixin(&quot;DataCastle2016&quot;)
+writeInCSV(pageInfosList)
+</code></pre>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://jialong952178959.github.io/tags/hugo/">hugo</a>
+
+  <a class="tag tag--primary tag--small" href="https://jialong952178959.github.io/tags/pages/">pages</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialong952178959.github.io/python%E7%88%AC%E8%99%AB/about/" data-tooltip="About">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialong952178959.github.io/python%E7%88%AC%E8%99%AB/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" data-tooltip="selemium获取微信公众号文章踩坑记录">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://jialong952178959.github.io/python%E7%88%AC%E8%99%AB/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://jialong952178959.github.io/python%E7%88%AC%E8%99%AB/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://jialong952178959.github.io/python%E7%88%AC%E8%99%AB/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 Firstname Lastname. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="1">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialong952178959.github.io/python%E7%88%AC%E8%99%AB/about/" data-tooltip="About">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://jialong952178959.github.io/python%E7%88%AC%E8%99%AB/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" data-tooltip="selemium获取微信公众号文章踩坑记录">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://jialong952178959.github.io/python%E7%88%AC%E8%99%AB/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://jialong952178959.github.io/python%E7%88%AC%E8%99%AB/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://jialong952178959.github.io/python%E7%88%AC%E8%99%AB/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="1">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjialong952178959.github.io%2Fpython%25E7%2588%25AC%25E8%2599%25AB%2Fselemium%25E8%258E%25B7%25E5%258F%2596%25E5%25BE%25AE%25E4%25BF%25A1%25E5%2585%25AC%25E4%25BC%2597%25E5%258F%25B7%25E6%2596%2587%25E7%25AB%25A0%25E8%25B8%25A9%25E5%259D%2591%25E8%25AE%25B0%25E5%25BD%25952%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fjialong952178959.github.io%2Fpython%25E7%2588%25AC%25E8%2599%25AB%2Fselemium%25E8%258E%25B7%25E5%258F%2596%25E5%25BE%25AE%25E4%25BF%25A1%25E5%2585%25AC%25E4%25BC%2597%25E5%258F%25B7%25E6%2596%2587%25E7%25AB%25A0%25E8%25B8%25A9%25E5%259D%2591%25E8%25AE%25B0%25E5%25BD%25952%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fjialong952178959.github.io%2Fpython%25E7%2588%25AC%25E8%2599%25AB%2Fselemium%25E8%258E%25B7%25E5%258F%2596%25E5%25BE%25AE%25E4%25BF%25A1%25E5%2585%25AC%25E4%25BC%2597%25E5%258F%25B7%25E6%2596%2587%25E7%25AB%25A0%25E8%25B8%25A9%25E5%259D%2591%25E8%25AE%25B0%25E5%25BD%25952%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/d09dc2d7aa5c467519e8af89f7b3d94c?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Firstname Lastname</h4>
+    
+      <div id="about-card-bio">Super bio with markdown support <strong>COOL</strong></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Your job title
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        France
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialong952178959.github.io/2018/06/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/">
+                <h3 class="media-heading">测试文章</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>这里是这篇文章的简介，其实什么都没有！</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialong952178959.github.io/2018/06/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
+                <h3 class="media-heading">Selemium获取微信公众号文章踩坑记录</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">方法研究 搜狗搜索引擎可检索微信文章，通过公众号绑定的微信号搜索对应的文章。但是包含了其他公众号发出的包含该关键字的文章，好在搜狗自带了站内筛选功能，但是筛选后生产的URL不能直接作为，爬虫的静态页地址，貌似这属于一种反爬虫机制，原理相当于在未登录时直接通过链接进入邮箱，会被弹出到登录页面。因此需要模拟用户操作，模拟手动进行筛选。查到很多blog采用selenium这个python库，于是决定踩坑。
+安装selenium  使用PIP命令 相关命令如下
+win+r 输入cmd 然后执行
+附上参考资料两篇：  https://www.cnblogs.com/sesshoumaru/p/python-selenium-webdriver.html  https://zhuanlan.zhihu.com/p/27115580 &gt; 更新pip： python -m pip install &ndash;upgrade pip
+&gt; 使cmd支持pip语法： 环境变量Path中加入python的Scripts路径（如：E:\python\Scripts）
+&gt; 安装seleniu： pip install selenium
+  安装后在python的IDE里输入 “import selenium” 然后回车，如果没报错就是装好了。
+使用浏览器引擎 浏览器引擎的作用是，自动控制浏览器，即模拟加载页面、点击、输入等人为的操作。因为电脑上装了Chrome，所以使用谷歌对应的驱动。下载地址：
+http://chromedriver.storage.googleapis.com/index.html
+使用的版本：2.38适配与Chrome 66
+ps：这个引擎需要跟浏览器的版本匹配，不然会报错“call function result missing &lsquo;value&rsquo;”，调试时“终端”窗口打印。
+下载后是exe文件，供python调用，所以不用安装。
+python相关代码  引擎的调用
+网上说放在系统环境变量里，但我试了，调试时报错找不到路径。解决办法：
+就把chromedriver.exe放在python脚本的文件夹内，初始化方法如下：
+ #coding=utf-8 from selenium import webdriver from selenium.webdriver.common.keys import Keys #通过传入路径初始化 ChromePath=&quot;C:/Users/ZJL/Desktop/python/chromedriver.exe&quot; brower=webdriver.Chrome(ChromePath) 
+ 加载微信搜索页面及自动筛选，这里以微信号为”DataCastle2016“为例： ``` #通过搜狗.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://jialong952178959.github.io/2018/06/newblog123/">
+                <h3 class="media-heading">NewBlog123</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jun 6, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Cut out summary from your post content here.</p>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         3 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://jialong952178959.github.io/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://jialong952178959.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/jialong952178959.github.io\/python%E7%88%AC%E8%99%AB\/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952\/';
+          
+            this.page.identifier = '\/python%E7%88%AC%E8%99%AB\/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+
