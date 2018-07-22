@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>the small space of jiaLong</title>
+
+  
+  
+  <meta name="author" content="佳龙" />
+  <meta name="description" content="selemium获取微信公众号文章（下），
+具体实现。存在不完善！
+
+" />
+
+
+
+
+
+<meta name="generator" content="Hugo 0.42.1" />
+
+
+<link rel="canonical" href="https://jialong952178959.github.io/post/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952/" />
+<link rel="alternative" href="/index.xml" title="the small space of jiaLong" type="application/atom+xml" />
+
+<link href="https://cdn.bootcss.com/semantic-ui/2.2.14/semantic.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+</head>
+
+<body>
+  <div class="flip-container">
+    <div class="flipper">
+      <section class="front">
+        
+<nav class="ui top secondary menu">
+  <div class="item">
+    <i class="inverted big link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <a href="/">
+      <i class="inverted big link home icon" title="首页"></i>
+    </a>
+  </div>
+</nav>
+ 
+<div class="ui centered grid">
+  <div class="fifteen wide mobile fifteen wide tablet eleven wide computer column post-list post-single-main">
+
+    <section class="ui secondary top attached black segment">
+      <a class="ui black right corner label" href="javascript:void(0)" onclick="savePostAsImg()">
+        <i class="save icon"></i>
+      </a>
+      <header>
+        <h1 class="ui header">
+          selemium获取微信公众号文章踩坑记录（2）
+          <div class="sub header">@ 佳龙 · May 22, 2018 · 2 min read · 更新于 Jun 21, 2018</div>
+        </h1>
+      </header>
+      <article class="post-content" style="margin-top: 2rem; font-size: 1.4rem;"><p>selemium获取微信公众号文章（下），<br />
+具体实现。存在不完善！</p>
+
+<p></p>
+
+<ul>
+<li>在文章的开头贴上搜到的一个视频资源，关于爬取微信公众号文章。讲得比较细，用requests这个库。借鉴了里面的关于查看100条信息以后的登录的方法。虽然没搞懂为什么。<br />
+<a href="https://www.bilibili.com/video/av22267490/">https://www.bilibili.com/video/av22267490/</a><br />
+<br /></li>
+</ul>
+
+<p>## 分析文章列表<br />
+   在文章列表中，每一篇文章都放在一个“&lt;li&gt;”标签下。
+   1. “文章时间”元素的id为“sogou_vr_11002601_box_0”到“sogou_vr_11002601_box_n”；
+   2. “文章链接”的id为“sogou_vr_11002601_title_x”，保存在href属性中；
+   3. “文章标题”也包含在“sogou_vr_11002601_title_x中”，因为含有搜索的关键字，整个标题被拆分成几大块放在不同位置；</p>
+
+<p>因此先通过id找到标签元素，然后通过获取属性或者html代码的方式，获得三种要爬取的信息。循环执行，直到把当前页的信息全部获取。<br />
+  ## 循环次数的确定<br />
+  循环的次数就是“&lt;li&gt;”标签的数量。使用find_elements_by_xpath()函数可返回文章列表的所有element得到一个List。元组的长度就是标签的数量。
+  ## 查看某个元素的xpath
+  在浏览器中右键&ndash;》审查元素&ndash;》在控制台中右键元素对应的标签代码&ndash;》copy&ndash;》copy xpath
+  ## 注意时间标签的xpath路径
+  一般路径为&rdquo;//*[@id=\&ldquo;sogou_vr_11002601_box_0\&ldquo;]/div[2]/div/span&rdquo;，有的时候这个路径会搜不到，使用try except（异常捕捉），在搜不到的时候使用路径&rdquo;//*[@id=\&ldquo;sogou_vr_11002601_box_0\&ldquo;]/div/div[2]/span&rdquo;从新搜索。
+  ## 标题的拼接
+  获取html源码后删除里面的非标签内容。<br />
+  标签的html代码： 删除里面的括号和括号里的内容即可</p>
+
+<pre><code>&lt;em&gt;&lt;!--red_beg--&gt;DataCastle&lt;!--red_end--&gt;&lt;/em&gt;应邀参加&lt;em&gt;&lt;!--red_beg--&gt;2016&lt;!--red_end--&gt;&lt;/em&gt;贵阳数博会,&lt;em&gt;&lt;!--red_beg--&gt;数据&lt;!--red_end--&gt;&lt;/em&gt;&lt;em&gt;&lt;!--red_beg--&gt;城堡&lt;!--red_end--&gt;&lt;/em&gt;堡主周涛现场展示大&lt;em&gt;&lt;!--red_beg--&gt;数据&lt;!--red_end--&gt;&lt;/em&gt;风采
+</code></pre>
+
+<p>replace（） 函数可以用空的字符串替代要删除的内容，达到删除的效果。</p>
+
+<pre><code>linkID=str('sogou_vr_11002601_title_'+str(i))
+link0=brower.find_element_by_id(linkID)
+#获取时间
+strlink=link0.get_attribute('href')
+#获取标题的html代码
+link0Html=str(link0.get_attribute('innerHTML'))
+replaceText=[&quot;em&quot;,&quot;!--red_beg--&quot;,&quot;!--red_end--&quot;,&quot;&lt;/&gt;&quot;,&quot;&lt;&gt;&quot;]
+#删除不需要的字符
+for replaceTextEach in replaceText:
+    link0Html=link0Html.replace(replaceTextEach,&quot;&quot;)
+</code></pre>
+
+<h2 id="爬取的内容按时间排序">爬取的内容按时间排序</h2>
+
+<blockquote>
+<ul>
+<li>参考 <a href="https://www.cnblogs.com/whaben/p/6495702.html">https://www.cnblogs.com/whaben/p/6495702.html</a><br /></li>
+</ul>
+</blockquote>
+
+<p>抓取的内容保存到List对象中，然后对List排序。sorted()函数可以根据字符排序，但是获得时间信息的格式如：“2018-6-10”在排序过程中与“2018-10-10”，会因为6&gt;1，出现错误，因此把时间标准化为“20180610”。代码入下：</p>
+
+<pre><code>time0=brower.find_element_by_xpath(timeXpath)
+strTime0=str(time0.text)
+strTime0List=strTime0.split('-')
+#小于10在前面加0
+if(int(strTime0List[1])&lt;10):
+    strTime0List[1]=&quot;0&quot;+strTime0List[1]
+if(int(strTime0List[2])&lt;10):
+    strTime0List[2]=&quot;0&quot;+strTime0List[2]
+strTime0=strTime0List[0]+strTime0List[1]+strTime0List[2]
+</code></pre>
+
+<h2 id="关于find-element有时候selenium会报错-element-is-not-attached-to-the-page-document">关于find_element有时候selenium会报错“element is not attached to the page document”</h2>
+
+<p>网上的解释为，因为刷新或者网络延迟未加载出来，使得标签丢失。解决方法是在加载新页面或者刷新后让线程休息几秒。或者循环执行代码，直到找到找到标签。</p>
+
+<pre><code> 1.   time.sleep(5)
+
+ 2.    #最多循环5次就跳出   
+        for j in range(5):                    
+            try:
+                find_element()
+                break
+            except:
+                #print(&quot;*****未找到元素*****&quot;)
+</code></pre>
+
+<h2 id="写入csv文件时出现空行">写入csv文件时出现空行</h2>
+
+<blockquote>
+<ul>
+<li>参考 <a href="https://blog.csdn.net/huitailang1991/article/details/54946528">https://blog.csdn.net/huitailang1991/article/details/54946528</a><br />
+空行的出现时因为编码的原因</li>
+</ul>
+</blockquote>
+
+<h2 id="关于登录的问题">关于登录的问题</h2>
+
+<p>之前在点击登录没有任何响应，正在准备放弃的时候，看到开头说的那个视频，通过cookies实现登录。不是很懂，但照着做确实有效果了。<br />
+* <strong>selenium直接在get请求中加入参数的方法</strong>
+&gt; 参考 <a href="https://www.zhihu.com/question/35547395">https://www.zhihu.com/question/35547395</a>
+* <strong>使用requests包设置get请求参数</strong>
+&gt; 参考 <a href="https://www.cnblogs.com/weke/articles/6309044.html">https://www.cnblogs.com/weke/articles/6309044.html</a></p>
+
+<p>首先自己扫码登录，在f12的network选项卡中查看状态码为200的请求，复制其中的cookies值。</p>
+
+<h1 id="源码完整版">源码完整版</h1>
+
+<pre><code>#coding=utf-8
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+from operator import itemgetter, attrgetter
+import csv
+import os
+import sys
+import io
+import requests
+
+#sys.stdout = io.TextIOWrapper(sys.stdout.buffer,encoding='gb18030') #改变标准输出的默认编码
+
+def getInfoFromWeixin(weixinID):
+    
+    ChromePath=&quot;C:/Users/ZJL/Desktop/python/chromedriver.exe&quot;
+    brower=webdriver.Chrome(ChromePath)
+    #先登录
+    r=requests.get(
+    url='http://weixin.sogou.com',
+    params={'Cookie':'SUID=8E0C80DF5EC90D0A00000000576F9CD5; SUV=00C77C06DF800C8E577D08AEAB055866; ssuid=5370652624; SMYUV=1489388482075944; dt_ssuid=5216821605; pex=C864C03270DED3DD8A06887A372DA219231FFAC25A9D64AE09E82AED12E416AC; IPLOC=CN5101; pgv_pvi=3011424256; UM_distinctid=162a30d592d3-044c2001b0a4b-5d4e211f-100200-162a30d592f151; GOTO=; toutiao_city_news=%E5%8C%97%E4%BA%AC; _ga=GA1.2.1916195936.1523153991; ld=Nyllllllll2z83CBlllllVrGrq6lllllTcla1kllll9llllljklll5@@@@@@@@@@; LSTMV=250%2C200; LCLKINT=11916; ABTEST=0|1524710372|v1; weixinIndexVisited=1; SNUID=45EA6D32ECE98671D961C2E8ED6DF37C; JSESSIONID=aaam4cMUTJ4k89_De6Kmw; sct=12; ppinf=5|1525699622|1526909222|dHJ1c3Q6MToxfGNsaWVudGlkOjQ6MjAxN3x1bmlxbmFtZToxODolRTQlQkQlQjMlRTklQkUlOTl8Y3J0OjEwOjE1MjU2OTk2MjJ8cmVmbmljazoxODolRTQlQkQlQjMlRTklQkUlOTl8dXNlcmlkOjQ0Om85dDJsdUJUNDhfQVBiWHp2VlZZVmlFcjdUakVAd2VpeGluLnNvaHUuY29tfA; pprdig=KDD-eUkj0n0PW8Ph0VJljopJp0U4HDTBD-piMCA-PtcMbZywAf0bw3D3wZLDx1rGK3JeMncJyqUXz3o1Khc8cGpEGq_wli2HLZuRBWGsjm4tb65q35E3iRHiZJBZSYMO2ZDA63sUODclHEgjzF60iVgDJiQMtyZ6AX-f0uGJsQk; sgid=01-32626259-AVrwVCanK6ick5pOdIKW8JpQ'})
+    newUrl=str(r.url)
+    brower.get(newUrl)
+    quitBtn=brower.find_element_by_id('loginBtn')
+    quitBtn.click()
+    time.sleep(15)
+    #通过搜狗.微信搜索DataCastle2016
+    brower.get(&quot;http://weixin.sogou.com/weixin?type=2&amp;query=&quot;+weixinID+&quot;&amp;ie=utf8&amp;s_from=input&amp;_sug_=y&amp;_sug_type_=&quot;)
+    # #查找登录按钮并点击
+    # brower.find_element_by_id('top_login').click()
+    # #等到微信扫码
+    # time.sleep(15)
+    
+    #找到筛选的按钮“搜索工具”，id为“tool_show”，自己打开上面的页面，然后F12，在Elements找到对应的UI。
+    getSearchBtn=brower.find_element_by_id('tool_show')
+    #获取到按钮后，执行点击
+    getSearchBtn.click()
+    #再找到&quot;账号内搜索“按钮，并点击
+    getIDSearchBtn=brower.find_element_by_id('search')
+    getIDSearchBtn.click()
+
+    #可能上面两步都不用也能直接获取input输入框
+    #获取到输入框input，清空，给输入框赋值”DataCastle2016“
+    getInput = brower.find_element_by_class_name('s-sea')
+    getInput.clear()
+    getInput.send_keys(weixinID)
+    #下面这步相当于回车
+    getInput.send_keys(Keys.RETURN)
+
+    
+    #  获取当前页面的信息数量
+    pageInfosList=[]
+
+    pageIndex=1
+    while pageIndex&gt;0:
+        time.sleep(5)
+        numInPage=len(brower.find_elements_by_xpath(&quot;//*[@id=\&quot;main\&quot;]/div[4]/ul/li&quot;))
+
+        for i in range(numInPage):
+            strlink=&quot;&quot;
+            link0Html=&quot;&quot;
+            strTime0=&quot;&quot;
+            timeXpath=&quot;//*[@id=\&quot;sogou_vr_11002601_box_&quot;+str(i)+&quot;\&quot;]/div[2]/div/span&quot;
+            for j in range(5):#线程休息2秒后最多循环5次就跳出                    
+                try:
+                    linkID=str('sogou_vr_11002601_title_'+str(i))
+                    link0=brower.find_element_by_id(linkID)
+                    strlink=link0.get_attribute('href')
+                    
+                    
+                    link0Html=str(link0.get_attribute('innerHTML'))
+                    replaceText=[&quot;em&quot;,&quot;!--red_beg--&quot;,&quot;!--red_end--&quot;,&quot;&lt;/&gt;&quot;,&quot;&lt;&gt;&quot;]
+                    for replaceTextEach in replaceText:
+                        link0Html=link0Html.replace(replaceTextEach,&quot;&quot;)
+                    
+                    time0=brower.find_element_by_xpath(timeXpath)
+                    strTime0=str(time0.text)
+                    strTime0List=strTime0.split('-')
+                    #小于10在前面加0
+                    if(int(strTime0List[1])&lt;10):
+                        strTime0List[1]=&quot;0&quot;+strTime0List[1]
+                    if(int(strTime0List[2])&lt;10):
+                        strTime0List[2]=&quot;0&quot;+strTime0List[2]
+                    strTime0=strTime0List[0]+strTime0List[1]+strTime0List[2]
+                    break
+
+                except:
+                    #print(&quot;*****未找到元素*****&quot;)
+                    timeXpath=&quot;//*[@id=\&quot;sogou_vr_11002601_box_&quot;+str(i)+&quot;\&quot;]/div/div[2]/span&quot;
+
+            # print(&quot;链接：&quot;+strlink)
+            # print(&quot;标题：&quot;+link0Html)
+            # print(&quot;时间:&quot;+strTime0)
+            pageInfosList.append([link0Html,strTime0,strlink])
+        #点击“下一页”
+        try:
+            brower.find_element_by_id('sogou_next').click()
+            print(pageIndex)
+            pageIndex+=1
+        except :
+            print(&quot;没有下一页！&quot;)
+            break
+    
+    pageInfosListNew=sorted(pageInfosList, key=itemgetter(1), reverse=True)
+    
+    return pageInfosListNew
+
+def writeInCSV(pageInfosList):
+    # csvfile=open(&quot;F:/WeiXin.csv&quot;,'wb')
+    # writer=csv.writer(csvfile)
+    # writer.writerow([&quot;链接&quot;,&quot;标题&quot;,&quot;日期&quot;])
+    # writer.writerows(pageInfosList)
+    # csvfile.close()
+    with open(&quot;F:/WeiXin.csv&quot;,'w',newline='') as csvout:
+        writer = csv.writer(csvout)
+        titleList=[&quot;标题&quot;,&quot;日期&quot;,&quot;链接&quot;]
+        writer.writerow(titleList)
+        for pageInfosLists in pageInfosList:
+            try:
+                writer.writerow(pageInfosLists)
+            except:
+                print(&quot;输出错误：&quot;+pageInfosLists[0]+&quot; || &quot;+pageInfosLists[1]+&quot; || &quot;+pageInfosLists[2])
+        
+    os.startfile(&quot;F:/WeiXin.csv&quot;)
+        
+pageInfosList=getInfoFromWeixin(&quot;DataCastle2016&quot;)
+writeInCSV(pageInfosList)
+</code></pre></article>
+    </section>
+
+    <footer class="ui secondary attached segment dream-tags">
+      
+      
+      <a class="ui label" href="/tags/selemium" title="selemium">selemium</a>
+      
+      <a class="ui label" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7" title="微信公众号">微信公众号</a>
+      
+      
+    </footer>
+
+    
+
+    
+    <footer class="ui secondary bottom attached stacked segment post-disqus-area" data-html2canvas-ignore="true">
+      <div id="disqus_thread"></div>
+      <script>
+      
+
+      
+
+
+      var disqus_config = function () {
+      this.page.url = 'https:\/\/jialong952178959.github.io\/post\/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952\/';  
+      this.page.identifier = '\/post\/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952\/'; 
+      };
+
+      (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://' + 'bbb' + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </footer>
+    
+
+  </div>
+  <div class="fifteen wide mobile fifteen wide tablet four wide computer column">
+
+    <section class="ui top attached center aligned inverted segment">
+  <div class="ui small circular image">
+    
+    <img src="https://i.loli.net/2018/06/25/5b304311d8cd5.png">
+    
+  </div>
+  <h3 class="ui header">佳龙的博客<div class="sub header" style="color: white;">竹礼</div>
+  </h3>
+
+  <div class="ui inverted horizontal list">
+    
+    <a class="item" href="/post">
+      <i class="archive icon" title="归档"></i>
+    </a>
+    
+    <a class="item" href="/tags">
+      <i class="tags icon" title="所有标签"></i>
+    </a>
+    <a class="item" href="/categories">
+      <i class="inverted cubes icon" title="所有分类"></i>
+    </a>
+  </div>
+
+  <a id="tag-category-pop" class="ui red right corner label">
+    <i class="pointing down icon" title="点击弹出标签和分类"></i>
+  </a>
+</section>
+
+
+<section class="ui attached center aligned inverted segment dream-header-tags dream-tags">
+  
+  <a class="ui label" href="/tags/10024" title="10024">10024</a>
+  
+  <a class="ui label" href="/tags/c&#43;&#43;api" title="c&#43;&#43;api">c&#43;&#43;api</a>
+  
+  <a class="ui label" href="/tags/geovs" title="geovs">geovs</a>
+  
+  <a class="ui label" href="/tags/github" title="github">github</a>
+  
+  <a class="ui label" href="/tags/hugo" title="hugo">hugo</a>
+  
+  <a class="ui label" href="/tags/selemium" title="selemium">selemium</a>
+  
+  <a class="ui label" href="/tags/tag1" title="tag1">tag1</a>
+  
+  <a class="ui label" href="/tags/tag2" title="tag2">tag2</a>
+  
+  <a class="ui label" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7" title="微信公众号">微信公众号</a>
+  
+  <a class="ui label" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D" title="阿里云域名">阿里云域名</a>
+  
+</section>
+
+
+
+<section class="ui attached inverted segment dream-categories">
+  <div class="ui inverted accordion">
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/category1" class="item" style="color: white;">category1</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://jialong952178959.github.io/post/newblog/" class="item">NewBlog123</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/geovs" class="item" style="color: white;">geovs</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://jialong952178959.github.io/post/geovs%E7%9A%84%E6%8F%92%E4%BB%B6%E6%B7%BB%E5%8A%A0%E4%B8%8E%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="item">GeoVS的插件添加与消息机制学习笔记</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/simplygon" class="item" style="color: white;">simplygon</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://jialong952178959.github.io/post/simplygon_api_%E8%AE%B0%E5%BD%95_10024%E9%94%99%E8%AF%AF/" class="item">Simplygon_api_记录_10024错误</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2" class="item" style="color: white;">创建博客</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://jialong952178959.github.io/post/%E4%BD%BF%E7%94%A8hugo%E4%B8%8Egithub-pages%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="item">使用hugo与github Pages创建博客</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/%E7%88%AC%E8%99%AB" class="item" style="color: white;">爬虫</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://jialong952178959.github.io/post/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952/" class="item">selemium获取微信公众号文章踩坑记录（2）</a>
+        </div>
+      </div>
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://jialong952178959.github.io/post/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" class="item">selemium获取微信公众号文章踩坑记录（1）</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+
+<section class="ui bottom attached center aligned inverted segment">
+    
+    <p>© 2016 - 2018 the small space of jiaLong</p>
+    
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+</section>
+
+
+  </div>
+</div>
+
+      </section>
+      <section class="back">
+        <nav class="ui top secondary menu" style="overflow-x: auto">
+  <div class="item">
+    <i class="inverted big link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  
+  <div class="item">
+    <a href="mailto:jialogn@gmail.com">
+      <i class="inverted big mail icon" title="email"></i>
+    </a>
+  </div>
+  
+  
+  <div class="item">
+    <a href="https://github.com/jialong952178959" target="_blank">
+      <i class="inverted big github icon" title="github"></i>
+    </a>
+  </div>
+  
+  
+  
+  
+</nav>
+
+<div class="ui centered grid about">
+  <div class="fifteen wide mobile fifteen wide tablet fifteen wide computer column">
+
+    <section class="ui stacked segments">
+      <header class="ui inverted segment">
+        <h2 class="ui header">
+          关于我
+        </h2>
+      </header>
+
+      <article class="ui inverted segment back-about">
+        <div class="ui stackable three column grid">
+          <div class="column">
+              
+              <p>明日再歌</p>
+
+<p>学到老</p>
+
+<p>自在</p>
+
+              
+          </div>
+          <div class="column">
+              
+              <hr />
+
+<p>title: &ldquo;自我介绍&rdquo;</p>
+
+<h2 id="date-2018-06-25t18-13-34-08-00">date: 2018-06-25T18:13:34+08:00</h2>
+
+              
+          </div>
+          <div class="column">
+              
+              会好的
+              
+          </div>
+        </div>
+      </article>
+
+      
+
+      
+      
+    </section>
+
+  </div>
+</div>
+
+      </section>
+    </div>
+  </div>
+
+  
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/bg.js"></script>
+<script src="/js/site.js"></script>
+
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'aaa', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>
+
+</html>

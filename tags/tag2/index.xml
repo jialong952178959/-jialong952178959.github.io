@@ -1,47 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tag2 on Hugo tranquilpeak theme</title>
+    <title>Tag2 on the small space of jiaLong</title>
     <link>https://jialong952178959.github.io/tags/tag2/</link>
-    <description>Recent content in Tag2 on Hugo tranquilpeak theme</description>
+    <description>Recent content in Tag2 on the small space of jiaLong</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 22 Jun 2018 09:46:14 +0800</lastBuildDate>
+    <language>zh</language>
+    <lastBuildDate>Thu, 21 Jun 2018 21:41:34 +0800</lastBuildDate>
     
 	<atom:link href="https://jialong952178959.github.io/tags/tag2/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Selemium获取微信公众号文章踩坑记录</title>
-      <link>https://jialong952178959.github.io/2018/06/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</link>
-      <pubDate>Fri, 22 Jun 2018 09:46:14 +0800</pubDate>
-      
-      <guid>https://jialong952178959.github.io/2018/06/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</guid>
-      <description>方法研究 搜狗搜索引擎可检索微信文章，通过公众号绑定的微信号搜索对应的文章。但是包含了其他公众号发出的包含该关键字的文章，好在搜狗自带了站内筛选功能，但是筛选后生产的URL不能直接作为，爬虫的静态页地址，貌似这属于一种反爬虫机制，原理相当于在未登录时直接通过链接进入邮箱，会被弹出到登录页面。因此需要模拟用户操作，模拟手动进行筛选。查到很多blog采用selenium这个python库，于是决定踩坑。
-安装selenium  使用PIP命令 相关命令如下
-win+r 输入cmd 然后执行
-附上参考资料两篇：  https://www.cnblogs.com/sesshoumaru/p/python-selenium-webdriver.html  https://zhuanlan.zhihu.com/p/27115580 &amp;gt; 更新pip： python -m pip install &amp;ndash;upgrade pip
-&amp;gt; 使cmd支持pip语法： 环境变量Path中加入python的Scripts路径（如：E:\python\Scripts）
-&amp;gt; 安装seleniu： pip install selenium
-  安装后在python的IDE里输入 “import selenium” 然后回车，如果没报错就是装好了。
-使用浏览器引擎 浏览器引擎的作用是，自动控制浏览器，即模拟加载页面、点击、输入等人为的操作。因为电脑上装了Chrome，所以使用谷歌对应的驱动。下载地址：
-http://chromedriver.storage.googleapis.com/index.html
-使用的版本：2.38适配与Chrome 66
-ps：这个引擎需要跟浏览器的版本匹配，不然会报错“call function result missing &amp;lsquo;value&amp;rsquo;”，调试时“终端”窗口打印。
-下载后是exe文件，供python调用，所以不用安装。
-python相关代码  引擎的调用
-网上说放在系统环境变量里，但我试了，调试时报错找不到路径。解决办法：
-就把chromedriver.exe放在python脚本的文件夹内，初始化方法如下：
- #coding=utf-8 from selenium import webdriver from selenium.webdriver.common.keys import Keys #通过传入路径初始化 ChromePath=&amp;quot;C:/Users/ZJL/Desktop/python/chromedriver.exe&amp;quot; brower=webdriver.Chrome(ChromePath) 
- 加载微信搜索页面及自动筛选，这里以微信号为”DataCastle2016“为例： ``` #通过搜狗.</description>
-    </item>
-    
-    <item>
       <title>NewBlog123</title>
-      <link>https://jialong952178959.github.io/2018/06/newblog123/</link>
+      <link>https://jialong952178959.github.io/post/newblog/</link>
       <pubDate>Thu, 21 Jun 2018 21:41:34 +0800</pubDate>
       
-      <guid>https://jialong952178959.github.io/2018/06/newblog123/</guid>
+      <guid>https://jialong952178959.github.io/post/newblog/</guid>
       <description>&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>

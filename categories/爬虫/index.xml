@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>爬虫 on the small space of jiaLong</title>
+    <link>https://jialong952178959.github.io/categories/%E7%88%AC%E8%99%AB/</link>
+    <description>Recent content in 爬虫 on the small space of jiaLong</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 22 May 2018 22:04:26 +0800</lastBuildDate>
+    
+	<atom:link href="https://jialong952178959.github.io/categories/%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>selemium获取微信公众号文章踩坑记录（2）</title>
+      <link>https://jialong952178959.github.io/post/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952/</link>
+      <pubDate>Tue, 22 May 2018 22:04:26 +0800</pubDate>
+      
+      <guid>https://jialong952178959.github.io/post/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952/</guid>
+      <description>&lt;p&gt;selemium获取微信公众号文章（下），&lt;br /&gt;
+具体实现。存在不完善！&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>selemium获取微信公众号文章踩坑记录（1）</title>
+      <link>https://jialong952178959.github.io/post/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Thu, 14 Dec 2017 11:18:15 +0800</pubDate>
+      
+      <guid>https://jialong952178959.github.io/post/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</guid>
+      <description>&lt;p&gt;selemium获取微信公众号文章（上），&lt;br /&gt;
+主要工具说明。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

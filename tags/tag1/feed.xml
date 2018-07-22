@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tag1 on Hugo PacMan Theme Demo</title>
+    <link>http://coderzh.github.io/hugo-pacman-theme/tags/tag1/</link>
+    <description>Recent content in Tag1 on Hugo PacMan Theme Demo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 22 Jun 2018 09:46:14 +0800</lastBuildDate>
+    
+	<atom:link href="http://coderzh.github.io/hugo-pacman-theme/tags/tag1/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Selemium获取微信公众号文章踩坑记录</title>
+      <link>http://coderzh.github.io/hugo-pacman-theme/post/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Fri, 22 Jun 2018 09:46:14 +0800</pubDate>
+      
+      <guid>http://coderzh.github.io/hugo-pacman-theme/post/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</guid>
+      <description>方法研究 搜狗搜索引擎可检索微信文章，通过公众号绑定的微信号搜索对应的文章。但是包含了其他公众号发出的包含该关键字的文章，好在搜狗自带了站内筛</description>
+    </item>
+    
+    <item>
+      <title>NewBlog123</title>
+      <link>http://coderzh.github.io/hugo-pacman-theme/post/newblog/</link>
+      <pubDate>Thu, 21 Jun 2018 21:41:34 +0800</pubDate>
+      
+      <guid>http://coderzh.github.io/hugo-pacman-theme/post/newblog/</guid>
+      <description>&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

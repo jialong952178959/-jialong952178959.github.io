@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Python爬虫学习 on Hugo tranquilpeak theme</title>
-    <link>https://jialong952178959.github.io/categories/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0/</link>
-    <description>Recent content in Python爬虫学习 on Hugo tranquilpeak theme</description>
+    <title>Python爬虫学习 on ��ϰ</title>
+    <link>https://example.com/categories/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0/</link>
+    <description>Recent content in Python爬虫学习 on ��ϰ</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ch</language>
     <lastBuildDate>Fri, 22 Jun 2018 09:46:14 +0800</lastBuildDate>
     
-	<atom:link href="https://jialong952178959.github.io/categories/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://example.com/categories/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Selemium获取微信公众号文章踩坑记录</title>
-      <link>https://jialong952178959.github.io/2018/06/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</link>
+      <link>https://example.com/post/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Fri, 22 Jun 2018 09:46:14 +0800</pubDate>
       
-      <guid>https://jialong952178959.github.io/2018/06/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</guid>
+      <guid>https://example.com/post/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</guid>
       <description>方法研究 搜狗搜索引擎可检索微信文章，通过公众号绑定的微信号搜索对应的文章。但是包含了其他公众号发出的包含该关键字的文章，好在搜狗自带了站内筛选功能，但是筛选后生产的URL不能直接作为，爬虫的静态页地址，貌似这属于一种反爬虫机制，原理相当于在未登录时直接通过链接进入邮箱，会被弹出到登录页面。因此需要模拟用户操作，模拟手动进行筛选。查到很多blog采用selenium这个python库，于是决定踩坑。
 安装selenium  使用PIP命令 相关命令如下
 win+r 输入cmd 然后执行

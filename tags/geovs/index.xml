@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Geovs on the small space of jiaLong</title>
+    <link>https://jialong952178959.github.io/tags/geovs/</link>
+    <description>Recent content in Geovs on the small space of jiaLong</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sun, 22 Jul 2018 21:07:38 +0800</lastBuildDate>
+    
+	<atom:link href="https://jialong952178959.github.io/tags/geovs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GeoVS的插件添加与消息机制学习笔记</title>
+      <link>https://jialong952178959.github.io/post/geovs%E7%9A%84%E6%8F%92%E4%BB%B6%E6%B7%BB%E5%8A%A0%E4%B8%8E%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 22 Jul 2018 21:07:38 +0800</pubDate>
+      
+      <guid>https://jialong952178959.github.io/post/geovs%E7%9A%84%E6%8F%92%E4%BB%B6%E6%B7%BB%E5%8A%A0%E4%B8%8E%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;GeoVS的插件添加与消息机制学习笔记，包含插件工程配置及使用过程记录。附件为自定义插件的源码。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

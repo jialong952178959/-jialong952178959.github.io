@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>系列1 on Hugo PacMan Theme Demo</title>
+    <link>http://coderzh.github.io/hugo-pacman-theme/categories/%E7%B3%BB%E5%88%971/</link>
+    <description>Recent content in 系列1 on Hugo PacMan Theme Demo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 22 May 2018 22:04:26 +0800</lastBuildDate>
+    
+	<atom:link href="http://coderzh.github.io/hugo-pacman-theme/categories/%E7%B3%BB%E5%88%971/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>http://coderzh.github.io/hugo-pacman-theme/python%E7%88%AC%E8%99%AB/about/</link>
+      <pubDate>Tue, 22 May 2018 22:04:26 +0800</pubDate>
+      
+      <guid>http://coderzh.github.io/hugo-pacman-theme/python%E7%88%AC%E8%99%AB/about/</guid>
+      <description>大家好，我是渣渣辉。 简介 出生地：香港 性别：男 年龄：38 演员经历 是兄弟就来啃我 是兄弟就来啃我啊 是兄弟就来啃我啊哈哈</description>
+    </item>
+    
+  </channel>
+</rss>

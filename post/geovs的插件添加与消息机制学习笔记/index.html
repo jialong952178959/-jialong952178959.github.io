@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>the small space of jiaLong</title>
+
+  
+  
+  <meta name="author" content="Author Name" />
+  <meta name="description" content="GeoVS的插件添加与消息机制学习笔记，包含插件工程配置及使用过程记录。附件为自定义插件的源码。
+
+" />
+
+
+
+
+
+<meta name="generator" content="Hugo 0.42.1" />
+
+
+<link rel="canonical" href="https://jialong952178959.github.io/post/geovs%E7%9A%84%E6%8F%92%E4%BB%B6%E6%B7%BB%E5%8A%A0%E4%B8%8E%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
+<link rel="alternative" href="/index.xml" title="the small space of jiaLong" type="application/atom+xml" />
+
+<link href="https://cdn.bootcss.com/semantic-ui/2.2.14/semantic.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+</head>
+
+<body>
+  <div class="flip-container">
+    <div class="flipper">
+      <section class="front">
+        
+<nav class="ui top secondary menu">
+  <div class="item">
+    <i class="inverted big link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <a href="/">
+      <i class="inverted big link home icon" title="首页"></i>
+    </a>
+  </div>
+</nav>
+ 
+<div class="ui centered grid">
+  <div class="fifteen wide mobile fifteen wide tablet eleven wide computer column post-list post-single-main">
+
+    <section class="ui secondary top attached black segment">
+      <a class="ui black right corner label" href="javascript:void(0)" onclick="savePostAsImg()">
+        <i class="save icon"></i>
+      </a>
+      <header>
+        <h1 class="ui header">
+          GeoVS的插件添加与消息机制学习笔记
+          <div class="sub header">@ Author Name · Jul 22, 2018 · 2 min read · 更新于 Jul 22, 2018</div>
+        </h1>
+      </header>
+      <article class="post-content" style="margin-top: 2rem; font-size: 1.4rem;"><p>GeoVS的插件添加与消息机制学习笔记，包含插件工程配置及使用过程记录。附件为自定义插件的源码。</p>
+
+<p></p>
+
+<p><strong>以新建工程CT3DPE_MyFirstDLL为例</strong></p>
+
+<hr />
+
+<h2 id="1-插件添加">1. 插件添加</h2>
+
+<ul>
+<li><strong>新建插件工程</strong>
+<img src="https://i.loli.net/2018/07/20/5b51d4512f711.png" alt="TIM截图20180720201832.png" />
+<img src="https://i.loli.net/2018/07/20/5b51d4d81be50.png" alt="TIM截图20180720202511.png" />
+<img src="https://i.loli.net/2018/07/20/5b51d4d81c5bc.png" alt="TIM截图20180720202528.png" /><br /></li>
+<li><strong>配置工程(在熟悉各插件后修改)</strong>
+```
+常规&ndash;输出目录
+.....\exec\binx64\plugin<br />
+常规&ndash;中间目录
+.....\mid\obj\CT3DPE_MyFirstDLL\Releasex64<br /></li>
+</ul>
+
+<p>c/c++&ndash;常规&ndash;附加包含目录
+../../pub/include;../../pub/include/ct3d;../../pub/include/plugin;../../pub/include/bcg100;../CT3DGeometry;../DEMAnalysis;../ModelAnalysis;../CT3DPE_ToolFly;../CT3DPluginBase;%(AdditionalIncludeDirectories)</p>
+
+<p>链接器&ndash;常规&ndash;附加库目录
+....\exec\binx64;....\pub\libx64;%(AdditionalLibraryDirectories)
+链接器&ndash;输入&ndash;附加依赖项
+GV3dCore.lib;CT3DGeometry.lib;DEMAnalysis.lib;CT3DPE_Toolfly.lib;ModelAnalysis.lib;CT3DPluginBase.lib;%(AdditionalDependencies)
+链接器&ndash;输入&ndash;模块定义文件
+.\CT3DPE_MyFirstDLL.def</p>
+
+<pre><code>新建dll可能默认32位运行平台，需要在工程属性中修改。
+![TIM截图20180720204720.png](https://i.loli.net/2018/07/20/5b51d9eed2ac6.png)
+![TIM截图20180720204257.png](https://i.loli.net/2018/07/20/5b51d8db87090.png)
+* **添加文件**  
+对比其他插件对应的以下几个文件，选择相同的函数构建新工程添加的文件。
+1. MenuCmd.cpp
+2. MenuCmd.h
+3. MenuElement.cpp
+4. MenuElement.h
+5. XPlugin.cpp
+6. XPlugin.h  
+&gt; 详细文件内容参见附件。  
+**注意**：MenuCmd.cpp与MenuCmd.h中需要声明和实现类与基类中的全部虚函数。  
+* **修改其他文件**  
+
+主要修改  dllmain.cpp（dll文件的编译入口） 与 StdAfx.h（结合LINK信息生成预编译文件）。  
+然后修改插件配置文件  *spdplg.xml*，添加插件。
+</code></pre>
+
+<p><plugin name="CT3DPE_MyFirstDLL.dll"/></p>
+
+<pre><code>&gt; 详细文件内容参见附件。  
+## 2. 添加菜单与绑定消息
+可参考《水平测距工具（CT3DPA_ModelAnalysis插件下的一个功能）》。
+* GeoVS\res\BCGSoft_ribbon\ribbon.xml(定义菜单栏)
+</code></pre>
+
+<p><CATEGORY>
+        <ELEMENT_NAME>Category</ELEMENT_NAME>
+        <NAME>新工具</NAME>
+        <IMAGE_LARGE>
+          <NAME>IDR_BCGP_IMAGE_CATEGORY_LARGE_0</NAME>
+        </IMAGE_LARGE>
+        <PANELS>
+          <PANEL>
+            <ELEMENT_NAME>Panel</ELEMENT_NAME>
+            <NAME>新工具栏</NAME>
+            <ELEMENTS>
+              <ELEMENT>
+                <ELEMENT_NAME>Button</ELEMENT_NAME>
+                <ID>
+                  <NAME>ID_APP_NEWFUN</NAME>
+                  <VALUE>66666</VALUE>
+                </ID>
+                <TEXT>new tool</TEXT>
+                <INDEX_LARGE>10</INDEX_LARGE>
+              </ELEMENT>
+            </ELEMENTS>
+          </PANEL>
+        </PANELS>
+      </CATEGORY></p>
+
+<pre><code>* GeoVS\Resource.h（定义按钮响应，也许可以不要）
+</code></pre>
+
+<p>#define ID_APP_NEWFUN               66666</p>
+
+<pre><code>* EGeoVS\GeoVSView.cpp（菜单按钮的鼠标事件响应）
+</code></pre>
+
+<p>//自定义工具
+ON_COMMAND(ID_APP_NEWFUN, &amp;CGeoVSView::OnClickNewfun)</p>
+
+<p>//自定义工具函数
+void CGeoVSView::OnClickNewfun()
+{
+	AfxMessageBox(_T(&ldquo;点击按钮，并发送消息： this is a test message&rdquo;));		
+//发送一条测试消息
+	IPluginManager* pManager = GetApp()-&gt;getPluginManager();
+	pManager-&gt;publish(_T(&ldquo;this is a test message&rdquo;), (WPARAM)0, (LPARAM)(LPVOID)0);</p>
+
+<p>	UpdateUI();
+}</p>
+
+<pre><code>* EGeoVS\GeoVSView.h（与.cpp对应）
+</code></pre>
+
+<p>	//自定义工具函数
+public:
+	void OnClickNewfun();</p>
+
+<pre><code>* CT3DPE_MyFirstDLL\Resource.h(可以不用改)
+</code></pre>
+
+<p>#define ID_APP_NEWFUN               66666</p>
+
+<pre><code>* CT3DPE_MyFirstDLL\MenuElement.cpp（订阅插件消息）  
+
+CMenuElement::create()中添加订阅
+</code></pre>
+
+<p>m_pApplication-&gt;getPluginManager()-&gt;subscribe(&ldquo;this is a test message&rdquo;, (IElement*)this);//订阅测试消息</p>
+
+<pre><code>CMenuElement::destroy()中取消订阅
+</code></pre>
+
+<p>m_pApplication-&gt;getPluginManager()-&gt;unsubscribe(&ldquo;this is a test message&rdquo;, (IElement*)this);//取消订阅测试消息</p>
+
+<pre><code>* CT3DPE_MyFirstDLL\MenuCmd.cpp（响应插件消息）
+</code></pre>
+
+<p>long CMenuCmd::OnNotify( const std::string&amp; topic, WPARAM wParam, LPARAM lParam )
+{
+	if(topic == &ldquo;this is a test message&rdquo;)
+	{
+		AfxMessageBox(_T(&ldquo;收到消息： this is a test message&rdquo;));		
+	}
+	else if(topic == &ldquo;ct3d.event.clear.analysis.result&rdquo;)
+	{</p>
+
+<p>	}
+	return 0;
+}
+```
+* 先生成dll，在启动GeoVS。<br />
+<img src="https://i.loli.net/2018/07/20/5b51e30717914.png" alt="TIM截图20180720204257.png" />
+<img src="https://i.loli.net/2018/07/20/5b51e3072347c.png" alt="TIM截图20180720212604.png" />
+<img src="https://i.loli.net/2018/07/20/5b51e30723c62.png" alt="TIM截图20180720212611.png" /></p>
+
+<h2 id="3-插件消息的作用流程">3. 插件消息的作用流程</h2>
+
+<blockquote>
+<p>GeoVS\GeoVSView.cpp &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 通过一个菜单按钮点击事件发送消息<br />
+CT3DPE_MyFirstDLL\MenuElement.cpp &nbsp; &nbsp; &nbsp;订阅消息<br />
+CT3DPE_MyFirstDLL\MenuCmd.cpp &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;识别并响应</p>
+</blockquote>
+
+<h2 id="4-两个主要遇到的bug">4. 两个主要遇到的bug</h2>
+
+<p><strong>（1） LINK : fatal error LNK1104: 无法打开文件“BCGCBPRO2210U100.lib”</strong><br />
+正常的文件名为：<strong>BCGCBPRO2210100.lib</strong>。<br />
+导致的原因是：工程文件编码格式。<br />
+修改方法：
+属性中，常规&ndash;字符集 应设置为“使用多字节字符集”。</p>
+
+<p><strong>（2） error LNK2001: 无法解析的外部符号 &ldquo;public: virtual long __cdecl CMenuCmd::OnMouseMove(unsigned int,class CPoint)&rdquo; (?OnMouseMove@CMenuCmd@@UEAAJIVCPoint@@@Z)</strong></p>
+
+<p>网上说这个问题的导致原因很多。
+本项目中原因：卸载工程后，虽修改文件夹名但未从src文件夹中移除。再新建相同名字的工程，因为相同文件的代码不一导致。删除不用文件后，编译通过。<br />
+<img src="https://i.loli.net/2018/07/20/5b51e5c483591.png" alt="TIM截图20180720213756.png" /></p>
+
+<h2 id="5-附件">5. 附件</h2>
+
+<p><a href="https://pan.baidu.com/s/1oKwsmYhbAdUAVzNN0fybWg">https://pan.baidu.com/s/1oKwsmYhbAdUAVzNN0fybWg</a></p></article>
+    </section>
+
+    <footer class="ui secondary attached segment dream-tags">
+      
+      
+      <a class="ui label" href="/tags/geovs" title="GeoVS">GeoVS</a>
+      
+      
+    </footer>
+
+    
+
+    
+    <footer class="ui secondary bottom attached stacked segment post-disqus-area" data-html2canvas-ignore="true">
+      <div id="disqus_thread"></div>
+      <script>
+      
+
+      
+
+
+      var disqus_config = function () {
+      this.page.url = 'https:\/\/jialong952178959.github.io\/post\/geovs%E7%9A%84%E6%8F%92%E4%BB%B6%E6%B7%BB%E5%8A%A0%E4%B8%8E%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/';  
+      this.page.identifier = '\/post\/geovs%E7%9A%84%E6%8F%92%E4%BB%B6%E6%B7%BB%E5%8A%A0%E4%B8%8E%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/'; 
+      };
+
+      (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://' + 'bbb' + '.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </footer>
+    
+
+  </div>
+  <div class="fifteen wide mobile fifteen wide tablet four wide computer column">
+
+    <section class="ui top attached center aligned inverted segment">
+  <div class="ui small circular image">
+    
+    <img src="https://i.loli.net/2018/06/25/5b304311d8cd5.png">
+    
+  </div>
+  <h3 class="ui header">佳龙的博客<div class="sub header" style="color: white;">竹礼</div>
+  </h3>
+
+  <div class="ui inverted horizontal list">
+    
+    <a class="item" href="/post">
+      <i class="archive icon" title="归档"></i>
+    </a>
+    
+    <a class="item" href="/tags">
+      <i class="tags icon" title="所有标签"></i>
+    </a>
+    <a class="item" href="/categories">
+      <i class="inverted cubes icon" title="所有分类"></i>
+    </a>
+  </div>
+
+  <a id="tag-category-pop" class="ui red right corner label">
+    <i class="pointing down icon" title="点击弹出标签和分类"></i>
+  </a>
+</section>
+
+
+<section class="ui attached center aligned inverted segment dream-header-tags dream-tags">
+  
+  <a class="ui label" href="/tags/10024" title="10024">10024</a>
+  
+  <a class="ui label" href="/tags/c&#43;&#43;api" title="c&#43;&#43;api">c&#43;&#43;api</a>
+  
+  <a class="ui label" href="/tags/geovs" title="geovs">geovs</a>
+  
+  <a class="ui label" href="/tags/github" title="github">github</a>
+  
+  <a class="ui label" href="/tags/hugo" title="hugo">hugo</a>
+  
+  <a class="ui label" href="/tags/selemium" title="selemium">selemium</a>
+  
+  <a class="ui label" href="/tags/tag1" title="tag1">tag1</a>
+  
+  <a class="ui label" href="/tags/tag2" title="tag2">tag2</a>
+  
+  <a class="ui label" href="/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7" title="微信公众号">微信公众号</a>
+  
+  <a class="ui label" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D" title="阿里云域名">阿里云域名</a>
+  
+</section>
+
+
+
+<section class="ui attached inverted segment dream-categories">
+  <div class="ui inverted accordion">
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/category1" class="item" style="color: white;">category1</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://jialong952178959.github.io/post/newblog/" class="item">NewBlog123</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/geovs" class="item" style="color: white;">geovs</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://jialong952178959.github.io/post/geovs%E7%9A%84%E6%8F%92%E4%BB%B6%E6%B7%BB%E5%8A%A0%E4%B8%8E%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="item">GeoVS的插件添加与消息机制学习笔记</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/simplygon" class="item" style="color: white;">simplygon</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://jialong952178959.github.io/post/simplygon_api_%E8%AE%B0%E5%BD%95_10024%E9%94%99%E8%AF%AF/" class="item">Simplygon_api_记录_10024错误</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2" class="item" style="color: white;">创建博客</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://jialong952178959.github.io/post/%E4%BD%BF%E7%94%A8hugo%E4%B8%8Egithub-pages%E5%88%9B%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="item">使用hugo与github Pages创建博客</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/%E7%88%AC%E8%99%AB" class="item" style="color: white;">爬虫</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://jialong952178959.github.io/post/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%952/" class="item">selemium获取微信公众号文章踩坑记录（2）</a>
+        </div>
+      </div>
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://jialong952178959.github.io/post/selemium%E8%8E%B7%E5%8F%96%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" class="item">selemium获取微信公众号文章踩坑记录（1）</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+
+<section class="ui bottom attached center aligned inverted segment">
+    
+    <p>© 2016 - 2018 the small space of jiaLong</p>
+    
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+</section>
+
+
+  </div>
+</div>
+
+      </section>
+      <section class="back">
+        <nav class="ui top secondary menu" style="overflow-x: auto">
+  <div class="item">
+    <i class="inverted big link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  
+  <div class="item">
+    <a href="mailto:jialogn@gmail.com">
+      <i class="inverted big mail icon" title="email"></i>
+    </a>
+  </div>
+  
+  
+  <div class="item">
+    <a href="https://github.com/jialong952178959" target="_blank">
+      <i class="inverted big github icon" title="github"></i>
+    </a>
+  </div>
+  
+  
+  
+  
+</nav>
+
+<div class="ui centered grid about">
+  <div class="fifteen wide mobile fifteen wide tablet fifteen wide computer column">
+
+    <section class="ui stacked segments">
+      <header class="ui inverted segment">
+        <h2 class="ui header">
+          关于我
+        </h2>
+      </header>
+
+      <article class="ui inverted segment back-about">
+        <div class="ui stackable three column grid">
+          <div class="column">
+              
+              <p>明日再歌</p>
+
+<p>学到老</p>
+
+<p>自在</p>
+
+              
+          </div>
+          <div class="column">
+              
+              <hr />
+
+<p>title: &ldquo;自我介绍&rdquo;</p>
+
+<h2 id="date-2018-06-25t18-13-34-08-00">date: 2018-06-25T18:13:34+08:00</h2>
+
+              
+          </div>
+          <div class="column">
+              
+              会好的
+              
+          </div>
+        </div>
+      </article>
+
+      
+
+      
+      
+    </section>
+
+  </div>
+</div>
+
+      </section>
+    </div>
+  </div>
+
+  
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/bg.js"></script>
+<script src="/js/site.js"></script>
+
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'aaa', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Hugo PacMan Theme Demo</title>
+    <link>http://coderzh.github.io/hugo-pacman-theme/categories/</link>
+    <description>Recent content in Categories on Hugo PacMan Theme Demo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    
+	<atom:link href="http://coderzh.github.io/hugo-pacman-theme/categories/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Category1</title>
+      <link>http://coderzh.github.io/hugo-pacman-theme/categories/category1/</link>
+      <pubDate>Thu, 21 Jun 2018 21:41:34 +0800</pubDate>
+      
+      <guid>http://coderzh.github.io/hugo-pacman-theme/categories/category1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pages</title>
+      <link>http://coderzh.github.io/hugo-pacman-theme/categories/pages/</link>
+      <pubDate>Tue, 22 May 2018 22:04:26 +0800</pubDate>
+      
+      <guid>http://coderzh.github.io/hugo-pacman-theme/categories/pages/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python爬虫学习</title>
+      <link>http://coderzh.github.io/hugo-pacman-theme/categories/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Fri, 22 Jun 2018 09:46:14 +0800</pubDate>
+      
+      <guid>http://coderzh.github.io/hugo-pacman-theme/categories/python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>二级测试类</title>
+      <link>http://coderzh.github.io/hugo-pacman-theme/categories/%E4%BA%8C%E7%BA%A7%E6%B5%8B%E8%AF%95%E7%B1%BB/</link>
+      <pubDate>Fri, 22 Jun 2018 10:07:12 +0800</pubDate>
+      
+      <guid>http://coderzh.github.io/hugo-pacman-theme/categories/%E4%BA%8C%E7%BA%A7%E6%B5%8B%E8%AF%95%E7%B1%BB/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>测试类文章</title>
+      <link>http://coderzh.github.io/hugo-pacman-theme/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB%E6%96%87%E7%AB%A0/</link>
+      <pubDate>Fri, 22 Jun 2018 10:07:12 +0800</pubDate>
+      
+      <guid>http://coderzh.github.io/hugo-pacman-theme/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB%E6%96%87%E7%AB%A0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>系列1</title>
+      <link>http://coderzh.github.io/hugo-pacman-theme/categories/%E7%B3%BB%E5%88%971/</link>
+      <pubDate>Tue, 22 May 2018 22:04:26 +0800</pubDate>
+      
+      <guid>http://coderzh.github.io/hugo-pacman-theme/categories/%E7%B3%BB%E5%88%971/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
